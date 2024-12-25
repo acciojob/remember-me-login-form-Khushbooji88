@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" href="styles.css">
@@ -16,43 +16,50 @@
     </form>
     <button id="existing" style="display: none;">Login as existing user</button>
 
-    <script type="text/javascript" src="./script.js">
+    <script type="text/javascript">
 		const form = document.getElementById('form');
-const usernameEl = document.getElementById('username');
-const passwordEl = document.getElementById('password');
-const checkboxEl = document.getElementById('checkbox');
-const existingUserBtn = document.getElementById('existing');
+		const usernameEl = document.getElementById('username');
+		const passwordEl = document.getElementById('password');
+		const checkboxEl = document.getElementById('checkbox');
+		const existingUserBtn = document.getElementById('existing');
 
-// Add event listener to the form
-form.addEventListener('submit', function(event) {
-    // Prevent the form from being submitted
-    event.preventDefault();
+		// Add event listener to the form
+		form.addEventListener('submit', function(event) {
+		    // Prevent the form from being submitted
+		    event.preventDefault();
 
-    // Get the values from the form
-    const username = usernameEl.value;
-    const password = passwordEl.value;
-    const rememberMe = checkboxEl.checked;
+		    // Get the values from the form
+		    const username = usernameEl.value;
+		    const password = passwordEl.value;
+		    const rememberMe = checkboxEl.checked;
 
-    // Handle the remember me functionality
-    if (rememberMe) {
-        // Save the details in local storage
-    } else {
-        // Remove the saved details from local storage
-    }
+		    // Handle the remember me functionality
+		    if (rememberMe) {
+		        localStorage.setItem('username', username);
+		        localStorage.setItem('password', password);
+		    } else {
+		        localStorage.removeItem('username');
+		        localStorage.removeItem('password');
+		    }
 
-    // Display the alert
-    alert('Logged in as ' + username);
+		    // Display the alert
+		    alert('Logged in as ' + username);
 
-    // Check if there are saved details
-    if (/* saved details */) {
-        // Show the existing user button
-    }
-});
+		    // Check if there are saved details
+		    const savedUsername = localStorage.getItem('username');
+		    const savedPassword = localStorage.getItem('password');
 
-// Add event listener to the existing user button
-existingUserBtn.addEventListener('click', function() {
-    // Display the alert with the saved username
-});
+		    if (savedUsername && savedPassword) {
+		        existingUserBtn.style.display = 'block';
+		    }
+		});
+
+		// Add event listener to the existing user button
+		existingUserBtn.addEventListener('click', function() {
+		    const savedUsername = localStorage.getItem('username');
+		    alert('Logged in as ' + savedUsername);
+		});
 	</script>
 </body>
 </html>
+
