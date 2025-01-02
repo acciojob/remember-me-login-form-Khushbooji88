@@ -1,6 +1,6 @@
 window.onload = function() {
-    const savedUsername = localStorage.getItem("username");
-    const savedPassword = localStorage.getItem("password");
+    let savedUsername = localStorage.getItem("username");
+    let savedPassword = localStorage.getItem("password");
     
     if (savedUsername && savedPassword) {
         document.getElementById('existing').style.display = 'block';
@@ -10,9 +10,9 @@ window.onload = function() {
     document.getElementById('loginForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent default form submission
     
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        const rememberMe = document.getElementById('checkbox').checked;
+        let username = document.getElementById('username').value;
+        let password = document.getElementById('password').value;
+        let  rememberMe = document.getElementById('checkbox').checked;
     
         if (rememberMe) {
             localStorage.setItem('username', username);
@@ -27,7 +27,7 @@ window.onload = function() {
     
     // Event listener for existing user login button
     document.getElementById('existing').addEventListener('click', function() {
-        const savedUsername = localStorage.getItem('username');
+        let savedUsername = localStorage.getItem('username');
         alert('Logged in as ' + savedUsername);
     });
     };
