@@ -13,15 +13,20 @@
             }
 
             document.getElementById('submit').addEventListener('click', function(event) {
-                event.preventDefault();
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
+                event.preventDefault(); // Prevent default form submission behavior
+                const username = document.getElementById('username').value.trim();
+                const password = document.getElementById('password').value.trim();
                 const rememberMe = document.getElementById('checkbox').checked;
+
+                if (!username || !password) {
+                    alert("Please fill in both username and password.");
+                    return;
+                }
 
                 if (rememberMe) {
                     // Save details to localStorage
                     localStorage.setItem('username', username);
-                    localStorage.setItem('password', password);
+                    localStorage.setItem('password', password); // For demo purposes only, avoid saving passwords in real apps
                 } else {
                     // Remove saved details from localStorage
                     localStorage.removeItem('username');
@@ -34,7 +39,11 @@
 
             document.getElementById('existing').addEventListener('click', function() {
                 const savedUsername = localStorage.getItem('username');
-                alert(`Logged in as ${savedUsername}`);
+                if (savedUsername) {
+                    alert(`Logged in as ${savedUsername}`);
+                } else {
+                    alert("No saved user found.");
+                }
             });
         }
     </script>
